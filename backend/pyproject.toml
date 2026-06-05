@@ -1,0 +1,73 @@
+[project]
+name = "whatdidimiss-backend"
+version = "0.1.0"
+description = "AI-Powered Content Creator Coach - Backend"
+requires-python = ">=3.9"
+dependencies = [
+    # Web framework
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.32",
+
+    # Database
+    "sqlalchemy[asyncio]>=2.0",
+    "asyncpg>=0.30",
+    "psycopg2-binary>=2.9",
+    "alembic>=1.14",
+
+    # Background jobs
+    "celery[redis]>=5.4",
+    "redis>=5.0",
+
+    # Google APIs
+    "google-cloud-videointelligence>=2.17",
+    "google-api-python-client>=2.150",
+    "google-auth>=2.36",
+    "google-auth-oauthlib>=1.2",
+    "google-cloud-storage>=2.19",
+
+    # Video download
+    "yt-dlp>=2025.1",
+
+    # OpenAI
+    "openai>=1.58",
+
+    # Auth & security
+    "python-jose[cryptography]>=3.3",
+    "cryptography>=43",
+
+    # Config & validation
+    "pydantic>=2.10",
+    "pydantic-settings>=2.6",
+
+    # HTTP client
+    "httpx>=0.28",
+
+    # Observability
+    "structlog>=24.4",
+
+    # Python 3.9 compat
+    "eval_type_backport>=0.2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3",
+    "pytest-asyncio>=0.24",
+    "factory-boy>=3.3",
+    "ruff>=0.8",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py39"
+line-length = 100
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
